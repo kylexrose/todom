@@ -8,10 +8,19 @@
   </head>
   <body>
     <div class="app">
-      <h1>Todo</h1>
+      <h1>Todo
+        <button id="clearTodos">Clear Todo List</button></h1>
         <section>
           <label for="todo-input">Add to your todo list!</label>
           <input class="todo-input" type="text" name="todo-input">
+          <label for="priority">Priority</label>
+          <select id="priority" name="priority">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
           <button class="add-todo">ADD</button>
         </section>
       <ol class="todo-list"></ol>
