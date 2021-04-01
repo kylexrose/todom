@@ -4,5 +4,25 @@
 
 body{
   padding: 25px;
-  background-color: ghostwhite;
+  background-color: grey;
+}
+
+h1{
+  font-family: 'Train One', cursive;
+}
+
+h1 button{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+ol{
+  width:500px
+}
+
+li div{
+  float:right;
+}
+
+span input{
+  length: 40px; 
 }

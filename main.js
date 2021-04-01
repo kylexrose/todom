@@ -1,7 +1,7 @@
 const todoList = document.querySelector(".todo-list");
 const onlyIncomplete = document.querySelector("#filters");
 updateList();
-
+const list = document.querySelectorAll("li");
 //add button
 document.querySelector(".add-todo").addEventListener('click', () => {
   const newObj = {
@@ -41,10 +41,19 @@ function printTodo(todo) {
   let newElement = document.createElement('li');
   newElement.classList.add(`priority${todo.priority}`);
   newElement.classList.add("todoElement");
+  newElement.classList.add("list-group-item");
   newElement.id = `item${todo.id}`;
-  newElement.innerHTML = `<input type="checkbox" class="completed" ${checkedStr}">...${todo.text}`;
+  newElement.innerHTML = `<input type="checkbox" class="completed" ${checkedStr}">...<span>${todo.text}</span>
+  <div class="btn-group" role="group">
+  <button type="button" class="btn btn-success btn-sm edit" id="edit${todo.id}">Edit</button>
+  <button type="button" class="btn btn-danger btn-sm remove" id="remove${todo.id}">Remove</button>
+  </div>
+  `;
   todoList.appendChild(newElement);
-  document.querySelector
+  const span = newElement.querySelector("span");
+  newElement.querySelector(`#edit${todo.id}`).addEventListener('click', (e) => editTodo(span, e.target, todo));
+  const remButton = newElement.querySelector(`#remove${todo.id}`);
+  remButton.addEventListener('click', () => true)
 }
 
 //resort and refresh list
@@ -58,16 +67,20 @@ function updateList(){
 
 function toggleCompleted(){
   if(onlyIncomplete.checked){
-  for(let i = 0; i < checkboxes.length; i++){
-    if(todos[i].complete){
-      document.querySelector(`#item${todos[i].id}`).hidden = true;
+    for(let i = 0; i < checkboxes.length; i++){
+      if(todos[i].complete){
+        document.querySelector(`#item${todos[i].id}`).hidden = true;
+      }
     }
-  }
-}else{
-  for(let i = 0; i < checkboxes.length; i++){
-    if(todos[i].complete){
-      document.querySelector(`#item${todos[i].id}`).hidden = false;
+  }else{
+    for(let i = 0; i < checkboxes.length; i++){
+      if(todos[i].complete){
+        document.querySelector(`#item${todos[i].id}`).hidden = false;
+      }
     }
   }
 }
+
+function editTodo(element, todo){
+  //element.innerHTML = '<input type="text" class="form-control">'
 }
