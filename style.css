@@ -26,3 +26,12 @@ li div{
 span input{
   length: 40px; 
 }
+
+.form-control-xs {
+  height: calc(1em + .375rem + 2px) !important;
+  width: auto;
+  padding: .125rem .25rem !important;
+  font-size: .75rem !important;
+  line-height: 1.5;
+  border-radius: .2rem;
+}

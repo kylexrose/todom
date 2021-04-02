@@ -43,17 +43,15 @@ function printTodo(todo) {
   newElement.classList.add("todoElement");
   newElement.classList.add("list-group-item");
   newElement.id = `item${todo.id}`;
-  newElement.innerHTML = `<input type="checkbox" class="completed" ${checkedStr}">...<span>${todo.text}</span>
+  newElement.innerHTML = 
+  `<input type="checkbox" class="completed" ${checkedStr}">...${todo.text}
   <div class="btn-group" role="group">
   <button type="button" class="btn btn-success btn-sm edit" id="edit${todo.id}">Edit</button>
   <button type="button" class="btn btn-danger btn-sm remove" id="remove${todo.id}">Remove</button>
-  </div>
-  `;
+  </div>`;
   todoList.appendChild(newElement);
-  const span = newElement.querySelector("span");
-  newElement.querySelector(`#edit${todo.id}`).addEventListener('click', (e) => editTodo(span, e.target, todo));
-  const remButton = newElement.querySelector(`#remove${todo.id}`);
-  remButton.addEventListener('click', () => true)
+  newElement.querySelector(`#edit${todo.id}`).addEventListener('click', () => editTodo(newElement, checkedStr, todo));
+  newElement.querySelector(`#remove${todo.id}`).addEventListener('click', () => removeTodo(todo))
 }
 
 //resort and refresh list
@@ -81,6 +79,21 @@ function toggleCompleted(){
   }
 }
 
-function editTodo(element, todo){
-  //element.innerHTML = '<input type="text" class="form-control">'
+function editTodo(element, checkedStr, todo){
+  console.log(checkedStr);
+  element.innerHTML = `<input type="checkbox" class="completed" ${checkedStr}">...<input type="text" class="form-control form-control-xs" id="editText${todo.id}" value="${todo.text}">
+  <div class="btn-group" role="group">
+  <button type="button" class="btn btn-success btn-sm edit" id="save${todo.id}">Save</button>
+  <button type="button" class="btn btn-danger btn-sm remove" id="remove${todo.id}">Remove</button>
+  </div>`;
+
+  document.querySelector(`#save${todo.id}`).addEventListener('click', () =>{
+    todo.text = element.querySelector('.form-control').value;
+    updateList();
+  })
+}
+
+function removeTodo(todo){
+  todos.splice(todo.id, 1);
+  updateList();
 }
