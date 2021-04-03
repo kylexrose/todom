@@ -79,11 +79,12 @@ function toggleCompleted(){
   }
 }
 
+//edit todo
 function editTodo(element, checkedStr, todo){
   console.log(checkedStr);
   element.innerHTML = `<input type="checkbox" class="completed" ${checkedStr}">...<input type="text" class="form-control form-control-xs" id="editText${todo.id}" value="${todo.text}">
   <div class="btn-group" role="group">
-  <button type="button" class="btn btn-success btn-sm edit" id="save${todo.id}">Save</button>
+  <button type="button" class="btn btn-info btn-sm edit" id="save${todo.id}">Save</button>
   <button type="button" class="btn btn-danger btn-sm remove" id="remove${todo.id}">Remove</button>
   </div>`;
 
@@ -91,9 +92,13 @@ function editTodo(element, checkedStr, todo){
     todo.text = element.querySelector('.form-control').value;
     updateList();
   })
+  document.querySelector(`#remove${todo.id}`).addEventListener('click', () => removeTodo(todo));
+  document
 }
 
+//remove todo
 function removeTodo(todo){
-  todos.splice(todo.id, 1);
+  const i = todos.findIndex(x => x.id === todo.id)
+  todos.splice(i, 1);
   updateList();
 }

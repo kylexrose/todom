@@ -29,9 +29,24 @@ span input{
 
 .form-control-xs {
   height: calc(1em + .375rem + 2px) !important;
-  width: auto;
+  width: 250px;
+  display: inline-block;
   padding: .125rem .25rem !important;
   font-size: .75rem !important;
   line-height: 1.5;
   border-radius: .2rem;
+}
+
+.priority1 {
+  font-weight: bolder !important;
+color: maroon !important;
+}
+
+.priority2{
+  font-weight: bolder;
+  color:rgb(173, 173, 3)
+}
+
+.priority3{
+
 }
