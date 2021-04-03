@@ -23,10 +23,6 @@ li div{
   float:right;
 }
 
-span input{
-  length: 40px; 
-}
-
 .form-control-xs {
   height: calc(1em + .375rem + 2px) !important;
   width: 250px;
@@ -48,5 +44,14 @@ color: maroon !important;
 }
 
 .priority3{
+  font-weight: bold;
+  color:rgb(65, 173, 3);
+}
 
+.priority3{
+  color:rgb(69, 2, 224);
+}
+
+.priority3{
+  color:rgb(0, 0, 0);
 }

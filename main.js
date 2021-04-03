@@ -51,7 +51,7 @@ function printTodo(todo) {
   </div>`;
   todoList.appendChild(newElement);
   newElement.querySelector(`#edit${todo.id}`).addEventListener('click', () => editTodo(newElement, checkedStr, todo));
-  newElement.querySelector(`#remove${todo.id}`).addEventListener('click', () => removeTodo(todo))
+  newElement.querySelector(`#remove${todo.id}`).addEventListener('click', () => removeTodo(todo));
 }
 
 //resort and refresh list
