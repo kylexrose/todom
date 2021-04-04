@@ -26,9 +26,15 @@
           </select>
           <button type="button" class="add-todo btn btn-primary">Add</button>
           <br>
-          <div class="form-check form-switch">
-          <input type="checkbox" class="form-check-input" id="filters" name="filters">
-          <label for="filters">Show only incomplete</label>
+          <div class="switchContainer">
+            <div class="form-check form-switch">
+            <input type="checkbox" class="form-check-input" id="incompleteFilter" name="incompleteFilter">
+            <label for="incompleteFilter">Show only incomplete</label>
+            </div>
+            <div class="form-check form-switch">
+            <input type="checkbox" class="form-check-input" id="sortPriority" name="sortPriority">
+            <label for="sortPriority">Sort by priority</label>
+            </div>
           </div>
         </section>
       <ol class="todo-list list-group-numbered"></ol>
