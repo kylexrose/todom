@@ -1,7 +1,7 @@
 const todoList = document.querySelector(".todo-list");
 const onlyIncomplete = document.querySelector("#incompleteFilter");
 const sortByPriority = document.querySelector("#sortPriority");
-sortByPriority.checked = false;
+let checkboxes = document.querySelectorAll(".completed");
 updateList();
 const list = document.querySelectorAll("li");
 //add button
@@ -29,13 +29,16 @@ onlyIncomplete.addEventListener('change', () => toggleCompleted())
 //sort by priority checkbox
 sortByPriority.addEventListener('change', () => updateList())
 
-//update checkboxes
-const checkboxes = document.querySelectorAll(".completed");
-for(let i = 0; i < checkboxes.length; i++){
-  checkboxes[i].addEventListener('change', (e) =>{
-    todos[i].complete = e.target.checked;
-    toggleCompleted();
-  })
+//update complete
+function updateCompleted(){
+  console.log(checkboxes)
+  for(let i = 0; i < checkboxes.length; i++){
+    checkboxes[i].addEventListener('change', (e) =>{
+      todos[i].complete = e.target.checked;
+      console.log('triggered')
+      toggleCompleted();
+    })
+  }
 }
 
 //print DOM elements
@@ -62,12 +65,15 @@ function updateList(){
   todoList.innerHTML = "";
   if (sortByPriority.checked === true){
     todos.sort((a, b) => a.priority - b.priority);
-  }else{
+  }else if (sortByPriority.checked === false){
     todos.sort((a, b) => a.id - b.id)
   }
   for(let todo of todos){
     printTodo(todo);
   }
+  checkboxes = document.querySelectorAll(".completed");
+  updateCompleted();
+  toggleCompleted();
 }
 
 function toggleCompleted(){
