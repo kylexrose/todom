@@ -31,11 +31,10 @@ sortByPriority.addEventListener('change', () => updateList())
 
 //update complete
 function updateCompleted(){
-  console.log(checkboxes)
+  checkboxes = document.querySelectorAll(".completed");
   for(let i = 0; i < checkboxes.length; i++){
     checkboxes[i].addEventListener('change', (e) =>{
       todos[i].complete = e.target.checked;
-      console.log('triggered')
       toggleCompleted();
     })
   }
@@ -56,7 +55,7 @@ function printTodo(todo) {
   <button type="button" class="btn btn-danger btn-sm remove" id="remove${todo.id}">Remove</button>
   </div>`;
   todoList.appendChild(newElement);
-  newElement.querySelector(`#edit${todo.id}`).addEventListener('click', () => editTodo(newElement, checkedStr, todo));
+  newElement.querySelector(`#edit${todo.id}`).addEventListener('click', () => editTodo(newElement, todo));
   newElement.querySelector(`#remove${todo.id}`).addEventListener('click', () => removeTodo(todo));
 }
 
@@ -71,7 +70,6 @@ function updateList(){
   for(let todo of todos){
     printTodo(todo);
   }
-  checkboxes = document.querySelectorAll(".completed");
   updateCompleted();
   toggleCompleted();
 }
@@ -93,20 +91,22 @@ function toggleCompleted(){
 }
 
 //edit todo
-function editTodo(element, checkedStr, todo){
-  console.log(checkedStr);
-  element.innerHTML = `<input type="checkbox" class="completed" ${checkedStr}">...<input type="text" class="form-control form-control-xs" id="editText${todo.id}" value="${todo.text}">
+function editTodo(element, todo){
+  console.log(todo)
+  let checkedStr = todo.complete ? "checked=\"true\"" : "";
+  element.innerHTML = `<input type="checkbox" class="completed" ${checkedStr}">...
+  <input type="text" class="form-control form-control-xs" id="editText${todo.id}" value="${todo.text}">
   <div class="btn-group" role="group">
   <button type="button" class="btn btn-info btn-sm edit" id="save${todo.id}">Save</button>
   <button type="button" class="btn btn-danger btn-sm remove" id="remove${todo.id}">Remove</button>
   </div>`;
-
+  updateCompleted();
   document.querySelector(`#save${todo.id}`).addEventListener('click', () =>{
+    
     todo.text = element.querySelector('.form-control').value;
     updateList();
   })
   document.querySelector(`#remove${todo.id}`).addEventListener('click', () => removeTodo(todo));
-  document
 }
 
 //remove todo
