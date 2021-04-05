@@ -92,7 +92,6 @@ function toggleCompleted(){
 
 //edit todo
 function editTodo(element, todo){
-  console.log(todo)
   let checkedStr = todo.complete ? "checked=\"true\"" : "";
   element.innerHTML = `<input type="checkbox" class="completed" ${checkedStr}">...
   <input type="text" class="form-control form-control-xs" id="editText${todo.id}" value="${todo.text}">
